@@ -132,6 +132,24 @@ class GildedRoseTest {
     }
 
     @Test
+    void givenItemAgedBrieMoreThanQuality50_whenUpdateQuality_thenQualityNotIncreased() {
+        // given
+        final Item[] items1 = new Item[] { new Item(AGED_BRIE_CHEESE_NAME, 0, 50) };
+        GildedRose app1 = new GildedRose(items1);
+
+        final Item[] items2 = new Item[] { new Item(AGED_BRIE_CHEESE_NAME, -1, 53) };
+        GildedRose app2 = new GildedRose(items2);
+
+        // when
+        app1.updateQuality();
+        app2.updateQuality();
+
+        // then
+        assertEquals(50, app1.items[0].quality);
+        assertEquals(53, app2.items[0].quality);
+    }
+
+    @Test
     void givenItemAgedBrie_whenUpdateQuality_thenSellIn1Decreased() {
         // given
         final Item[] items1 = new Item[] { new Item(AGED_BRIE_CHEESE_NAME, 1, 2) };
@@ -209,6 +227,24 @@ class GildedRoseTest {
     }
 
     @Test
+    void givenItemBackstagePassesQualityMoreThan50_whenUpdateQuality_thenQualityNotIncreased() {
+        // given
+        final Item[] items1 = new Item[] { new Item(BACKSTAGE_PASSES_NAME, 5, 50) };
+        GildedRose app1 = new GildedRose(items1);
+
+        final Item[] items2 = new Item[] { new Item(BACKSTAGE_PASSES_NAME, 1, 99) };
+        GildedRose app2 = new GildedRose(items2);
+
+        // when
+        app1.updateQuality();
+        app2.updateQuality();
+
+        // then
+        assertEquals(50, app1.items[0].quality);
+        assertEquals(99, app2.items[0].quality);
+    }
+
+    @Test
     void givenItemBackstagePassesUnder50QualityAndUnderSellIn0_whenUpdateQuality_thenQuality0() {
         // given
         final Item[] items1 = new Item[] { new Item(BACKSTAGE_PASSES_NAME, 0, 4) };
@@ -225,5 +261,6 @@ class GildedRoseTest {
         assertEquals(0, app1.items[0].quality);
         assertEquals(0, app2.items[0].quality);
     }
+
 
 }
