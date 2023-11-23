@@ -96,7 +96,7 @@ class GildedRoseTest {
     }
 
     @Test
-    void givenItemAgedBrieUnderQuality50_whenUpdateQuality_thenQuality1Increased() {
+    void givenItemAgedBrieUnderQuality50AndSellInExceed0_whenUpdateQuality_thenQuality1Increased() {
         // given
         final Item[] items1 = new Item[] { new Item(AGED_BRIE_CHEESE_NAME, 1, 2) };
         GildedRose app1 = new GildedRose(items1);
@@ -111,6 +111,24 @@ class GildedRoseTest {
         // then
         assertEquals(3, app1.items[0].quality);
         assertEquals(1, app2.items[0].quality);
+    }
+
+    @Test
+    void givenItemAgedBrieUnderQuality50AndSellInLessThan0_whenUpdateQuality_thenQuality2Increased() {
+        // given
+        final Item[] items1 = new Item[] { new Item(AGED_BRIE_CHEESE_NAME, 0, 2) };
+        GildedRose app1 = new GildedRose(items1);
+
+        final Item[] items2 = new Item[] { new Item(AGED_BRIE_CHEESE_NAME, -1, 0) };
+        GildedRose app2 = new GildedRose(items2);
+
+        // when
+        app1.updateQuality();
+        app2.updateQuality();
+
+        // then
+        assertEquals(4, app1.items[0].quality);
+        assertEquals(2, app2.items[0].quality);
     }
 
     @Test
