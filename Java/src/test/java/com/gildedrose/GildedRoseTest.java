@@ -8,6 +8,7 @@ class GildedRoseTest {
 
     private static final String AGED_BRIE_CHEESE_NAME = "Aged Brie";
     private static final String BACKSTAGE_PASSES_NAME = "Backstage passes to a TAFKAL80ETC concert";
+    private static final String SULFURAS_NAME = "Sulfuras, Hand of Ragnaros";
     private static final String SOME_ITEM_NAME = "item";
 
     @Test
@@ -262,5 +263,49 @@ class GildedRoseTest {
         assertEquals(0, app2.items[0].quality);
     }
 
+    @Test
+    void givenItemSulfuras_whenUpdateQuality_thenQualityNotDecreased() {
+        // given
+        final Item[] items1 = new Item[] { new Item(SULFURAS_NAME, 0, 1) };
+        GildedRose app1 = new GildedRose(items1);
 
+        final Item[] items2 = new Item[] { new Item(SULFURAS_NAME, -1, 0) };
+        GildedRose app2 = new GildedRose(items2);
+
+        final Item[] items3 = new Item[] { new Item(SULFURAS_NAME, 1, -1) };
+        GildedRose app3 = new GildedRose(items3);
+
+        // when
+        app1.updateQuality();
+        app2.updateQuality();
+        app3.updateQuality();
+
+        // then
+        assertEquals(1, app1.items[0].quality);
+        assertEquals(0, app2.items[0].quality);
+        assertEquals(-1, app3.items[0].quality);
+    }
+
+    @Test
+    void givenItemSulfuras_whenUpdateQuality_thenSellInNotDecreased() {
+        // given
+        final Item[] items1 = new Item[] { new Item(SULFURAS_NAME, 0, 1) };
+        GildedRose app1 = new GildedRose(items1);
+
+        final Item[] items2 = new Item[] { new Item(SULFURAS_NAME, -1, 0) };
+        GildedRose app2 = new GildedRose(items2);
+
+        final Item[] items3 = new Item[] { new Item(SULFURAS_NAME, 1, -1) };
+        GildedRose app3 = new GildedRose(items3);
+
+        // when
+        app1.updateQuality();
+        app2.updateQuality();
+        app3.updateQuality();
+
+        // then
+        assertEquals(0, app1.items[0].sellIn);
+        assertEquals(-1, app2.items[0].sellIn);
+        assertEquals(1, app3.items[0].sellIn);
+    }
 }
