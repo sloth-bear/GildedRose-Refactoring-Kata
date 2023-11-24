@@ -2,6 +2,7 @@ package com.gildedrose;
 
 import org.junit.jupiter.api.Test;
 
+import static com.gildedrose.ItemName.CONJURED;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class GildedRoseTest {
@@ -13,7 +14,7 @@ class GildedRoseTest {
 
     @Test
     void givenItemFoo_whenUpdateQuality_thenNotChangeItems() {
-        Item[] items = new Item[] { new Item("foo", 0, 0) };
+        Item[] items = new Item[]{new Item("foo", 0, 0)};
         GildedRose app = new GildedRose(items);
         app.updateQuality();
         assertEquals("foo", app.items[0].name);
@@ -22,10 +23,10 @@ class GildedRoseTest {
     @Test
     void givenSomeItemSellInExceed0ExceptAgedBrieAndBackstagePasses_whenUpdateQuality_thenQuality1Decreased() {
         // given
-        final Item[] items1 = new Item[] { new Item(SOME_ITEM_NAME, 1, 3) };
+        final Item[] items1 = new Item[]{new Item(SOME_ITEM_NAME, 1, 3)};
         GildedRose app1 = new GildedRose(items1);
 
-        final Item[] items2 = new Item[] { new Item(SOME_ITEM_NAME, 3, 1) };
+        final Item[] items2 = new Item[]{new Item(SOME_ITEM_NAME, 3, 1)};
         GildedRose app2 = new GildedRose(items2);
 
         // when
@@ -40,10 +41,10 @@ class GildedRoseTest {
     @Test
     void givenSomeItemSellInLessThan0ExceptAgedBrieAndBackstagePasses_whenUpdateQuality_thenQuality2Decreased() {
         // given
-        final Item[] items1 = new Item[] { new Item(SOME_ITEM_NAME, 0, 3) };
+        final Item[] items1 = new Item[]{new Item(SOME_ITEM_NAME, 0, 3)};
         GildedRose app1 = new GildedRose(items1);
 
-        final Item[] items2 = new Item[] { new Item(SOME_ITEM_NAME, -2, 2) };
+        final Item[] items2 = new Item[]{new Item(SOME_ITEM_NAME, -2, 2)};
         GildedRose app2 = new GildedRose(items2);
 
         // when
@@ -58,13 +59,13 @@ class GildedRoseTest {
     @Test
     void givenSomeRandomItem_whenUpdateQuality_thenSellIn1Decreased() {
         // given
-        final Item[] items1 = new Item[] { new Item(SOME_ITEM_NAME, 1, 3) };
+        final Item[] items1 = new Item[]{new Item(SOME_ITEM_NAME, 1, 3)};
         GildedRose app1 = new GildedRose(items1);
 
-        final Item[] items2 = new Item[] { new Item(BACKSTAGE_PASSES_NAME, -1, 1) };
+        final Item[] items2 = new Item[]{new Item(BACKSTAGE_PASSES_NAME, -1, 1)};
         GildedRose app2 = new GildedRose(items2);
 
-        final Item[] items3 = new Item[] { new Item(AGED_BRIE_CHEESE_NAME, 0, 1) };
+        final Item[] items3 = new Item[]{new Item(AGED_BRIE_CHEESE_NAME, 0, 1)};
         GildedRose app3 = new GildedRose(items3);
 
         // when
@@ -81,10 +82,10 @@ class GildedRoseTest {
     @Test
     void givenSomeRandomItemQualityLessThan0ExceptAgedBrieAndBackstagePasses_whenUpdateQuality_thenQualityNotDecreased() {
         // given
-        final Item[] items1 = new Item[] { new Item(SOME_ITEM_NAME, 1, 0) };
+        final Item[] items1 = new Item[]{new Item(SOME_ITEM_NAME, 1, 0)};
         GildedRose app1 = new GildedRose(items1);
 
-        final Item[] items2 = new Item[] { new Item(SOME_ITEM_NAME, -1, -1) };
+        final Item[] items2 = new Item[]{new Item(SOME_ITEM_NAME, -1, -1)};
         GildedRose app2 = new GildedRose(items2);
 
         // when
@@ -99,10 +100,10 @@ class GildedRoseTest {
     @Test
     void givenItemAgedBrieUnderQuality50AndSellInExceed0_whenUpdateQuality_thenQuality1Increased() {
         // given
-        final Item[] items1 = new Item[] { new Item(AGED_BRIE_CHEESE_NAME, 1, 2) };
+        final Item[] items1 = new Item[]{new Item(AGED_BRIE_CHEESE_NAME, 1, 2)};
         GildedRose app1 = new GildedRose(items1);
 
-        final Item[] items2 = new Item[] { new Item(AGED_BRIE_CHEESE_NAME, 3, 0) };
+        final Item[] items2 = new Item[]{new Item(AGED_BRIE_CHEESE_NAME, 3, 0)};
         GildedRose app2 = new GildedRose(items2);
 
         // when
@@ -117,10 +118,10 @@ class GildedRoseTest {
     @Test
     void givenItemAgedBrieUnderQuality50AndSellInLessThan0_whenUpdateQuality_thenQuality2Increased() {
         // given
-        final Item[] items1 = new Item[] { new Item(AGED_BRIE_CHEESE_NAME, 0, 2) };
+        final Item[] items1 = new Item[]{new Item(AGED_BRIE_CHEESE_NAME, 0, 2)};
         GildedRose app1 = new GildedRose(items1);
 
-        final Item[] items2 = new Item[] { new Item(AGED_BRIE_CHEESE_NAME, -1, 0) };
+        final Item[] items2 = new Item[]{new Item(AGED_BRIE_CHEESE_NAME, -1, 0)};
         GildedRose app2 = new GildedRose(items2);
 
         // when
@@ -135,10 +136,10 @@ class GildedRoseTest {
     @Test
     void givenItemAgedBrieMoreThanQuality50_whenUpdateQuality_thenQualityNotIncreased() {
         // given
-        final Item[] items1 = new Item[] { new Item(AGED_BRIE_CHEESE_NAME, 0, 50) };
+        final Item[] items1 = new Item[]{new Item(AGED_BRIE_CHEESE_NAME, 0, 50)};
         GildedRose app1 = new GildedRose(items1);
 
-        final Item[] items2 = new Item[] { new Item(AGED_BRIE_CHEESE_NAME, -1, 53) };
+        final Item[] items2 = new Item[]{new Item(AGED_BRIE_CHEESE_NAME, -1, 53)};
         GildedRose app2 = new GildedRose(items2);
 
         // when
@@ -153,13 +154,13 @@ class GildedRoseTest {
     @Test
     void givenItemAgedBrie_whenUpdateQuality_thenSellIn1Decreased() {
         // given
-        final Item[] items1 = new Item[] { new Item(AGED_BRIE_CHEESE_NAME, 1, 2) };
+        final Item[] items1 = new Item[]{new Item(AGED_BRIE_CHEESE_NAME, 1, 2)};
         GildedRose app1 = new GildedRose(items1);
 
-        final Item[] items2 = new Item[] { new Item(AGED_BRIE_CHEESE_NAME, 3, 1) };
+        final Item[] items2 = new Item[]{new Item(AGED_BRIE_CHEESE_NAME, 3, 1)};
         GildedRose app2 = new GildedRose(items2);
 
-        final Item[] items3 = new Item[] { new Item(AGED_BRIE_CHEESE_NAME, 0, 0) };
+        final Item[] items3 = new Item[]{new Item(AGED_BRIE_CHEESE_NAME, 0, 0)};
         GildedRose app3 = new GildedRose(items3);
 
         // when
@@ -176,10 +177,10 @@ class GildedRoseTest {
     @Test
     void givenItemBackstagePassesUnderQuality50AndExceedSellIn10_whenUpdateQuality_thenQuality1Increased() {
         // given
-        final Item[] items1 = new Item[] { new Item(BACKSTAGE_PASSES_NAME, 11, 2) };
+        final Item[] items1 = new Item[]{new Item(BACKSTAGE_PASSES_NAME, 11, 2)};
         GildedRose app1 = new GildedRose(items1);
 
-        final Item[] items2 = new Item[] { new Item(BACKSTAGE_PASSES_NAME, 78, 0) };
+        final Item[] items2 = new Item[]{new Item(BACKSTAGE_PASSES_NAME, 78, 0)};
         GildedRose app2 = new GildedRose(items2);
 
         // when
@@ -194,10 +195,10 @@ class GildedRoseTest {
     @Test
     void givenItemBackstagePassesUnderQuality50AndBetweenSellIn6And10_whenUpdateQuality_thenQuality2Increased() {
         // given
-        final Item[] items1 = new Item[] { new Item(BACKSTAGE_PASSES_NAME, 10, 2) };
+        final Item[] items1 = new Item[]{new Item(BACKSTAGE_PASSES_NAME, 10, 2)};
         GildedRose app1 = new GildedRose(items1);
 
-        final Item[] items2 = new Item[] { new Item(BACKSTAGE_PASSES_NAME, 6, 0) };
+        final Item[] items2 = new Item[]{new Item(BACKSTAGE_PASSES_NAME, 6, 0)};
         GildedRose app2 = new GildedRose(items2);
 
         // when
@@ -212,10 +213,10 @@ class GildedRoseTest {
     @Test
     void givenItemBackstagePassesUnder50QualityAndUnderSellIn5_whenUpdateQuality_thenQuality3Increased() {
         // given
-        final Item[] items1 = new Item[] { new Item(BACKSTAGE_PASSES_NAME, 5, 2) };
+        final Item[] items1 = new Item[]{new Item(BACKSTAGE_PASSES_NAME, 5, 2)};
         GildedRose app1 = new GildedRose(items1);
 
-        final Item[] items2 = new Item[] { new Item(BACKSTAGE_PASSES_NAME, 1, 0) };
+        final Item[] items2 = new Item[]{new Item(BACKSTAGE_PASSES_NAME, 1, 0)};
         GildedRose app2 = new GildedRose(items2);
 
         // when
@@ -230,10 +231,10 @@ class GildedRoseTest {
     @Test
     void givenItemBackstagePassesQualityMoreThan50_whenUpdateQuality_thenQualityNotIncreased() {
         // given
-        final Item[] items1 = new Item[] { new Item(BACKSTAGE_PASSES_NAME, 5, 50) };
+        final Item[] items1 = new Item[]{new Item(BACKSTAGE_PASSES_NAME, 5, 50)};
         GildedRose app1 = new GildedRose(items1);
 
-        final Item[] items2 = new Item[] { new Item(BACKSTAGE_PASSES_NAME, 1, 99) };
+        final Item[] items2 = new Item[]{new Item(BACKSTAGE_PASSES_NAME, 1, 99)};
         GildedRose app2 = new GildedRose(items2);
 
         // when
@@ -248,10 +249,10 @@ class GildedRoseTest {
     @Test
     void givenItemBackstagePassesUnder50QualityAndUnderSellIn0_whenUpdateQuality_thenQuality0() {
         // given
-        final Item[] items1 = new Item[] { new Item(BACKSTAGE_PASSES_NAME, 0, 4) };
+        final Item[] items1 = new Item[]{new Item(BACKSTAGE_PASSES_NAME, 0, 4)};
         GildedRose app1 = new GildedRose(items1);
 
-        final Item[] items2 = new Item[] { new Item(BACKSTAGE_PASSES_NAME, -1, 6) };
+        final Item[] items2 = new Item[]{new Item(BACKSTAGE_PASSES_NAME, -1, 6)};
         GildedRose app2 = new GildedRose(items2);
 
         // when
@@ -266,13 +267,13 @@ class GildedRoseTest {
     @Test
     void givenItemSulfuras_whenUpdateQuality_thenQualityNotDecreased() {
         // given
-        final Item[] items1 = new Item[] { new Item(SULFURAS_NAME, 0, 1) };
+        final Item[] items1 = new Item[]{new Item(SULFURAS_NAME, 0, 1)};
         GildedRose app1 = new GildedRose(items1);
 
-        final Item[] items2 = new Item[] { new Item(SULFURAS_NAME, -1, 0) };
+        final Item[] items2 = new Item[]{new Item(SULFURAS_NAME, -1, 0)};
         GildedRose app2 = new GildedRose(items2);
 
-        final Item[] items3 = new Item[] { new Item(SULFURAS_NAME, 1, -1) };
+        final Item[] items3 = new Item[]{new Item(SULFURAS_NAME, 1, -1)};
         GildedRose app3 = new GildedRose(items3);
 
         // when
@@ -289,13 +290,13 @@ class GildedRoseTest {
     @Test
     void givenItemSulfuras_whenUpdateQuality_thenSellInNotDecreased() {
         // given
-        final Item[] items1 = new Item[] { new Item(SULFURAS_NAME, 0, 1) };
+        final Item[] items1 = new Item[]{new Item(SULFURAS_NAME, 0, 1)};
         GildedRose app1 = new GildedRose(items1);
 
-        final Item[] items2 = new Item[] { new Item(SULFURAS_NAME, -1, 0) };
+        final Item[] items2 = new Item[]{new Item(SULFURAS_NAME, -1, 0)};
         GildedRose app2 = new GildedRose(items2);
 
-        final Item[] items3 = new Item[] { new Item(SULFURAS_NAME, 1, -1) };
+        final Item[] items3 = new Item[]{new Item(SULFURAS_NAME, 1, -1)};
         GildedRose app3 = new GildedRose(items3);
 
         // when
@@ -307,5 +308,28 @@ class GildedRoseTest {
         assertEquals(0, app1.items[0].sellIn);
         assertEquals(-1, app2.items[0].sellIn);
         assertEquals(1, app3.items[0].sellIn);
+    }
+
+    @Test
+    void givenItemConjured_whenUpdateQuality_thenQualityDecreaseDouble() {
+        // given
+        final Item[] items1 = new Item[]{new Item(CONJURED.getName(), 1, 4)};
+        GildedRose app1 = new GildedRose(items1);
+
+        final Item[] items2 = new Item[]{new Item(CONJURED.getName(), 0, 6)};
+        GildedRose app2 = new GildedRose(items2);
+
+        final Item[] items3 = new Item[]{new Item(CONJURED.getName(), -1, 8)};
+        GildedRose app3 = new GildedRose(items3);
+
+        // when
+        app1.updateQuality();
+        app2.updateQuality();
+        app3.updateQuality();
+
+        // then
+        assertEquals(2, app1.items[0].quality);
+        assertEquals(2, app2.items[0].quality);
+        assertEquals(4, app3.items[0].quality);
     }
 }

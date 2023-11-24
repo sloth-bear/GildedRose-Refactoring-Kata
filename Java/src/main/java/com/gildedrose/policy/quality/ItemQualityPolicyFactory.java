@@ -17,6 +17,7 @@ public class ItemQualityPolicyFactory {
         POLICY_MAP.put(AGED_BRIE.getName(), AgedBrieQualityPolicy::new);
         POLICY_MAP.put(BACKSTAGE_PASSES.getName(), BackstagePassesQualityPolicy::new);
         POLICY_MAP.put(SULFURAS.getName(), item -> new SulfurasQualityPolicy());
+        POLICY_MAP.put(CONJURED.getName(), ConjuredQualityPolicy::new);
     }
 
     private ItemQualityPolicyFactory() {
