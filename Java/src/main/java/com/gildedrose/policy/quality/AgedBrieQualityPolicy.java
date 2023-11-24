@@ -1,4 +1,4 @@
-package com.gildedrose.policy;
+package com.gildedrose.policy.quality;
 
 import com.gildedrose.Item;
 import com.gildedrose.adjuster.ItemQualityAdjuster;
