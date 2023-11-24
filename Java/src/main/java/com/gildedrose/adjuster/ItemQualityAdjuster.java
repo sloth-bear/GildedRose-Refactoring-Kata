@@ -5,6 +5,8 @@ import com.gildedrose.ItemName;
 
 public class ItemQualityAdjuster {
 
+    public static final int MIN_QUALITY = 0;
+    public static final int MAX_QUALITY = 50;
     private final Item item;
 
     public ItemQualityAdjuster(final Item item) {
@@ -16,16 +18,16 @@ public class ItemQualityAdjuster {
     }
 
     public void decreaseQuality() {
-        if (ItemName.SULFURAS.getName().equals(item.name) || item.quality <= 0) {
+        if (ItemName.SULFURAS.getName().equals(item.name) || item.quality <= MIN_QUALITY) {
             return;
         }
-        this.item.quality = item.quality - 1;
+        this.item.quality--;
     }
 
     public void increaseQuality() {
-        if (item.quality >= 50) {
+        if (item.quality >= MAX_QUALITY) {
             return;
         }
-        this.item.quality = item.quality + 1;
+        this.item.quality++;
     }
 }
