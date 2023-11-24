@@ -1,10 +1,27 @@
 package com.gildedrose;
 
+import com.gildedrose.adjuster.ItemSellInAdjuster;
+import com.gildedrose.policy.AgedBrieQualityPolicy;
+import com.gildedrose.policy.BackstagePassesQualityPolicy;
+import com.gildedrose.policy.DefaultQualityPolicy;
+import com.gildedrose.policy.ItemQualityPolicy;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.Function;
+
+import static com.gildedrose.ItemName.AGED_BRIE;
+import static com.gildedrose.ItemName.BACKSTAGE_PASSES;
+
 class GildedRose {
 
-    private static final String AGED_BRIE = "Aged Brie";
-    private static final String BACKSTAGE_PASSES = "Backstage passes to a TAFKAL80ETC concert";
-    private static final String SULFURAS = "Sulfuras, Hand of Ragnaros";
+    private static final Map<String, Function<Item, ItemQualityPolicy>> ADJUSTER_MAP;
+
+    static {
+        ADJUSTER_MAP = new HashMap<>();
+        ADJUSTER_MAP.put(AGED_BRIE.getName(), AgedBrieQualityPolicy::new);
+        ADJUSTER_MAP.put(BACKSTAGE_PASSES.getName(), BackstagePassesQualityPolicy::new);
+    }
 
     Item[] items;
 
@@ -14,60 +31,13 @@ class GildedRose {
 
     public void updateQuality() {
         for (final Item item : items) {
-            if (item.name.equals(AGED_BRIE)) {
-                increaseQuality(item);
+            final ItemQualityPolicy qualityPolicy = ADJUSTER_MAP
+                .getOrDefault(item.name, DefaultQualityPolicy::new)
+                .apply(item);
+            qualityPolicy.apply();
 
-                if (item.sellIn <= 0) {
-                    increaseQuality(item);
-                }
-            } else if (item.name.equals(BACKSTAGE_PASSES)) {
-                increaseQuality(item);
-
-                if (item.sellIn < 11) {
-                    increaseQuality(item);
-                }
-
-                if (item.sellIn < 6) {
-                    increaseQuality(item);
-                }
-
-                if (item.sellIn <= 0) {
-                    setZeroQuality(item);
-                }
-            } else {
-                decreaseQuality(item);
-
-                if (item.sellIn <= 0) {
-                    decreaseQuality(item);
-                }
-            }
-
-            decreaseSellIn(item);
+            final ItemSellInAdjuster sellInAdjuster = new ItemSellInAdjuster(item);
+            sellInAdjuster.decreaseSellIn();
         }
-    }
-
-    private void decreaseSellIn(final Item item) {
-        if (item.name.equals(SULFURAS)) {
-            return;
-        }
-        item.sellIn = item.sellIn - 1;
-    }
-
-    private void setZeroQuality(final Item item) {
-        item.quality = 0;
-    }
-
-    private void decreaseQuality(final Item item) {
-        if (item.name.equals(SULFURAS) || item.quality <= 0) {
-            return;
-        }
-        item.quality = item.quality - 1;
-    }
-
-    private void increaseQuality(final Item item) {
-        if (item.quality >= 50) {
-            return;
-        }
-        item.quality = item.quality + 1;
     }
 }
