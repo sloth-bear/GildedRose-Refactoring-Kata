@@ -1,7 +1,6 @@
 package com.gildedrose.adjuster;
 
 import com.gildedrose.Item;
-import com.gildedrose.ItemName;
 
 public class ItemQualityAdjuster {
 
@@ -18,7 +17,7 @@ public class ItemQualityAdjuster {
     }
 
     public void decreaseQuality() {
-        if (ItemName.SULFURAS.getName().equals(item.name) || item.quality <= MIN_QUALITY) {
+        if (item.quality <= MIN_QUALITY) {
             return;
         }
         this.item.quality--;

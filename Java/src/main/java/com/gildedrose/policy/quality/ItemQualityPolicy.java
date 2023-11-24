@@ -1,4 +1,4 @@
-package com.gildedrose.policy;
+package com.gildedrose.policy.quality;
 
 public interface ItemQualityPolicy {
 

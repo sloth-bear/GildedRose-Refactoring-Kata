@@ -1,8 +1,9 @@
 package com.gildedrose;
 
-import com.gildedrose.adjuster.ItemSellInAdjuster;
-import com.gildedrose.policy.ItemQualityPolicy;
-import com.gildedrose.policy.ItemQualityPolicyFactory;
+import com.gildedrose.policy.quality.ItemQualityPolicy;
+import com.gildedrose.policy.quality.ItemQualityPolicyFactory;
+import com.gildedrose.policy.sellin.ItemSellInPolicy;
+import com.gildedrose.policy.sellin.ItemSellInPolicyFactory;
 
 class GildedRose {
 
@@ -14,11 +15,11 @@ class GildedRose {
 
     public void updateQuality() {
         for (final Item item : items) {
-            final ItemQualityPolicy policy = ItemQualityPolicyFactory.create(item);
-            policy.apply();
+            final ItemQualityPolicy qualityPolicy = ItemQualityPolicyFactory.create(item);
+            qualityPolicy.apply();
 
-            final ItemSellInAdjuster sellInAdjuster = new ItemSellInAdjuster(item);
-            sellInAdjuster.decreaseSellIn();
+            final ItemSellInPolicy sellInPolicy = ItemSellInPolicyFactory.create(item);
+            sellInPolicy.apply();
         }
     }
 }
