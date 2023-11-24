@@ -282,9 +282,9 @@ class GildedRoseTest {
         app3.updateQuality();
 
         // then
-        assertEquals(1, app1.items[0].quality);
-        assertEquals(0, app2.items[0].quality);
-        assertEquals(-1, app3.items[0].quality);
+        assertEquals(80, app1.items[0].quality);
+        assertEquals(80, app2.items[0].quality);
+        assertEquals(80, app3.items[0].quality);
     }
 
     @Test
